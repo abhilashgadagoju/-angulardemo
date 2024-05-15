@@ -25,13 +25,22 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-2 col-md-2  col-sm-2 col-2">
-                                    <input type="text" name="originZip" class="form-control" required [(ngModel)]="shippingInfo.origin.zipCode" (ngModelChange)="onInputChange()" />
+                                    <input type="text" name="originZip" class="form-control" required [class.is-invalid]="!IsOriginZipCodeValid" [(ngModel)]="shippingInfo.origin.zipCode" (ngModelChange)="validateZipCode($event,true)"/>
+                                    <div class="invalid-feedback" >
+                                        Please enter a valid Zip Code
+                                    </div>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-                                    <input type="text" name="originCity" class="form-control " required [(ngModel)]="shippingInfo.origin.city" (ngModelChange)="onInputChange()"/>
+                                    <input type="text" name="originCity" class="form-control " required [class.is-invalid]="!IsOriginCityNameValid" (ngModelChange)="validateCityName($event,true)" [(ngModel)]="shippingInfo.origin.city"/>
+                                    <div class="invalid-feedback" >
+                                        Please enter a valid City
+                                    </div>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-                                    <input type="text" name="originState" class="form-control " required  [(ngModel)]="shippingInfo.origin.stateProvince" (ngModelChange)="onInputChange()"/>
+                                    <input type="text" name="originState" class="form-control " [class.is-invalid]="!IsOriginStateNameValid" required  [(ngModel)]="shippingInfo.origin.stateProvince" (ngModelChange)="validateStateName($event,true)"/>
+                                    <div class="invalid-feedback" >
+                                        Please enter a valid State
+                                    </div>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2">
                                     <button type="button" class="btn btn-sm btn-outline-secondary" (click)="resetOriginFields()">Clear</button>
@@ -47,13 +56,22 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-                                    <input type="text" name="destinationZip" class="form-control " required [(ngModel)]="shippingInfo.destination.zipCode" (ngModelChange)="onInputChange()"/>
+                                    <input type="text" name="destinationZip" class="form-control " [class.invalid]="!IsDestinationZipCodeValid"  required [(ngModel)]="shippingInfo.destination.zipCode" (ngModelChange)="validateZipCode($event,false)"/>
+                                    <div class="invalid-feedback">
+                                        Invalid Zip Code
+                                    </div>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-                                    <input type="text"   name="destinationCity" class="form-control " required [(ngModel)]="shippingInfo.destination.city" (ngModelChange)="onInputChange()"/>
+                                    <input type="text"   name="destinationCity" class="form-control " [class.invalid]="!IsDestinationCityNameValid"   required [(ngModel)]="shippingInfo.destination.city" (ngModelChange)="validateCityName($event,false)"/>
+                                    <div  class="invalid-feedback">
+                                        Invalid City Name
+                                    </div>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-                                    <input type="text" name="destinationState" class="form-control " required [(ngModel)]="shippingInfo.destination.stateProvince" (ngModelChange)="onInputChange()"/>
+                                    <input type="text" name="destinationState" class="form-control " [class.invalid]="!IsDestinationStateNameValid" required [(ngModel)]="shippingInfo.destination.stateProvince" (ngModelChange)="validateStateName($event,false)"/>
+                                    <div  class="invalid-feedback">
+                                        Invalid State Name
+                                    </div>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2">
                                     <button type="button" class="btn btn-sm btn-outline-secondary" (click)="resetDestinationFields()">Clear</button>

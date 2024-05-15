@@ -18,28 +18,85 @@ export class ShippingInfoComponent {
   }
 
   @Input() shippingInfo!: ShippingInformation;
+  IsOriginCityNameValid: boolean = true;
+  IsOriginZipCodeValid: boolean = true;
+  IsOriginStateNameValid: boolean = true;
+  IsDestinationCityNameValid: boolean = true;
+  IsDestinationZipCodeValid: boolean = true;
+  IsDestinationStateNameValid: boolean = true;
 
-
-  // ViewChild to access input fields
-  @ViewChild('destinationZip') destinationZip!: ElementRef<HTMLInputElement>;
-  @ViewChild('destinationCity') destinationCity!:ElementRef<HTMLInputElement> ;
-  @ViewChild('destinationState') destinationState!: ElementRef<HTMLInputElement>;
-  @ViewChild('originZip') originZip!: ElementRef<HTMLInputElement>;
-  @ViewChild('originCity') originCity!: ElementRef<HTMLInputElement>;
-  @ViewChild('originState') originState!: ElementRef<HTMLInputElement>;
 
   //Method to reset Origin fields
   resetOriginFields() {
-    this.originZip.nativeElement.value = '';
-    this.originCity.nativeElement.value = '';
-    this.originState.nativeElement.value = ''; 
+    this.shippingInfo.origin.city = '';
+    this.shippingInfo.origin.stateProvince = '';
+    this.shippingInfo.origin.zipCode = '';
   }
 
   // Method to reset destination fields
   resetDestinationFields() {
-    this.destinationZip.nativeElement.value = '';
-    this.destinationCity.nativeElement.value = '';
-    this.destinationState.nativeElement.value = '';
+    this.shippingInfo.destination.city = '';
+    this.shippingInfo.destination.stateProvince = '';
+    this.shippingInfo.destination.zipCode = '';
+  }
+
+  validateZipCode(zipCode: string,IsOrigin: boolean) {
+    // Regular expression for basic zip code validation
+    const zipCodeRegex: RegExp = /^\d{5}$/;
+    if(zipCodeRegex.test(zipCode)){
+      console.log("IsOrigin",zipCode);
+      if(IsOrigin){
+        this.IsOriginZipCodeValid= true;
+      }else{
+        this.IsDestinationZipCodeValid= true;
+      }
+      this.onInputChange();  
+    } else{
+      if(IsOrigin){
+        this.IsOriginZipCodeValid= false;
+      }
+      else{
+        this.IsDestinationZipCodeValid= false;
+      }
+    }
+  }
+
+  validateStateName(Name: string,IsOrigin: boolean) {
+    // Regular expression for basic Name validation
+    const companyNameRegex: RegExp = /^[a-zA-Z\s]*$/;
+    if(companyNameRegex.test(Name)&&Name!=""){
+      if(IsOrigin){
+        this.IsOriginStateNameValid= true;
+      }else{
+        this.IsDestinationStateNameValid= true;
+      }
+      this.onInputChange();
+    }else{
+      if(IsOrigin){
+        this.IsOriginStateNameValid= false;
+      } else{
+        this.IsDestinationStateNameValid= false;
+      }
+    }
+  }
+
+  validateCityName(Name: string,IsOrigin: boolean) {
+    // Regular expression for basic Name validation
+    const companyNameRegex: RegExp = /^[a-zA-Z\s]*$/;
+    if(companyNameRegex.test(Name)&&Name!=""){
+      if(IsOrigin){
+        this.IsOriginCityNameValid= true;
+      } else{
+        this.IsDestinationCityNameValid= true;
+      }
+      this.onInputChange();
+    }else{
+      if(IsOrigin){
+        this.IsOriginCityNameValid= false;
+      } else{
+        this.IsDestinationCityNameValid= false;
+      }
+    }
   }
 
 

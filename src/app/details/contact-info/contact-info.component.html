@@ -11,7 +11,10 @@
               <div class="row align-items-center align-content-center">
                 <label for="account" class="col-lg-2 col-md-2 col-sm-3  col-3 col-form-label form-label"><span class="text-danger">*</span>Account</label>
                 <div class="col-lg-2 col-md-3 col-sm-7 col-7 ">
-                  <input type="text" name="account" [(ngModel)]="customerInfo.account" (ngModelChange)="onInputChange()" class="form-control" required />
+                  <input type="text" name="account" id="account" [class.is-invalid]="!IsAccountValid" [(ngModel)]="customerInfo.account" (ngModelChange)="validateAccount($event)" class="form-control" required />
+                  <div class="invalid-feedback" >
+                    Please enter a valid Account Number.
+                  </div>
                 </div>
                 <div class="col-lg-1 col-md-2  col-sm-2 col-2 ">
                   <mat-icon>search</mat-icon>
@@ -41,17 +44,26 @@
               <div class="row ">
                 <label for="name" class="col-lg-2 col-md-2 col-sm-3 col-3 col-form-label">Name:</label>
                 <div class="col-md-4 col-sm-7 col-sm-7 col-7">
-                  <input type="text" name="name" class="form-control" [(ngModel)]="customerInfo.contactInformation.name" (ngModelChange)="onInputChange()"/>
+                  <input type="text" name="name" class="form-control" required [class.is-invalid]="!IsNameValid" [(ngModel)]="customerInfo.contactInformation.name" (ngModelChange)="validateName($event)"/>
+                  <div class="invalid-feedback" >
+                    Please enter a valid Name
+                  </div>
                 </div>
                 <label for="phone" class="col-lg-2 col-md-2 col-sm-3 col-3 col-form-label"><span class="text-danger">*</span>Phone:</label>
                 <div class="col-md-4 col-sm-7 col-sm-7 col-7">
-                  <input type="tel" name="phone" class="form-control" required [(ngModel)]="customerInfo.contactInformation.phone" (ngModelChange)="onInputChange()"/>
+                  <input type="tel" name="phone" class="form-control" required [class.is-invalid]="!IsPhoneValid" [(ngModel)]="customerInfo.contactInformation.phone" (ngModelChange)="validatePhone($event)"/>
+                  <div class="invalid-feedback" >
+                    Please enter a valid Phone Number
+                  </div>
                 </div>
               </div>
               <div class="row ">
                 <label for="email" class="col-lg-2 col-md-2 col-sm-3 col-3 col-form-label">Email:</label>
                 <div class="col-md-4 col-sm-7 col-7">
-                  <input type="email" name="email" class="form-control" required [(ngModel)]="customerInfo.contactInformation.email" (ngModelChange)="onInputChange()"/>
+                  <input type="email" name="email" class="form-control" required [class.is-invalid]="!IsEmailValid" [(ngModel)]="customerInfo.contactInformation.email" (ngModelChange)="validateEmail($event)"/>
+                  <div class="invalid-feedback" >
+                    Please enter a valid email address
+                  </div>
                 </div>
               </div>
             </form>
