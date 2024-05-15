@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card comCard">
+            <div class="card-header comHeader">
+                <h4 class="headerTitle">com</h4>
+            </div>
+            <div class="card-body comContent">
+                <div>
+                    <form>
+                        <div class="row  align-items-center align-content-center mb-2">
+
+                            <label for="dd2" class="col-lg-3 col-md-3 col-sm-4 col-4">dd2</label>
+                            <label for="tb2" class="col-lg-3 col-md-3 col-sm-4 col-4">tb2</label>
+                        </div>
+                        <ng-container *ngFor="let com of coms;">
+                            <div class="row align-items-center align-content-center mb-2">
+
+
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-4">
+                                    <select id="dd2" class="form-select form-select-sm">
+                                        <option value="{{com.dd3}}" selected>{{com.dd3}}</option>
+                                        <option value="option1">Option 1</option>
+                                        <option value="option2">Option 2</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                    <input type="text" id="tb2" class="form-control " required value="{{com.tb2}}">
+                                </div>
+
+
+                            </div>
+                        </ng-container>
+                        <!-- Render input fields dynamically -->
+                        <div *ngFor="let newcom of newComList; let i = index; trackBy: trackByFn">
+                            <div class="row align-items-center align-content-center mb-2">
+
+
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-4">
+                                    <select id="dd2" class="form-select form-select-sm">
+                                        <option value="option1">Option 1</option>
+                                        <option value="option2">Option 2</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                    <input type="text" class="form-control"
+                                     [(ngModel)]="newComList[i]" [name]="'tb2_' + i" 
+                                     [class.is-invalid]="isInvalid[i]">
+                                     <div class=" invalid-feedback">
+                                        Please enter a valid value.
+                                    </div>
+                                     
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="addEntireCom col-lg-3 col-md-3 d-flex align-content-center align-items-center" (click)="addInputField()">
+                                <mat-icon class="extra-large-icon">add_box</mat-icon>
+                                <label for="addCom ">Add Additional Com</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

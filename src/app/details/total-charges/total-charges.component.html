@@ -1,0 +1,92 @@
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card totalChargesCard">
+                <div class="card-header totalChargesHeader">
+                    <h4 class="headerTitle">Total Charges</h4>
+                </div>
+                <div class="card-body totalChargesContent">
+                    <div class="row col-lg-8 col-md-8 ">
+                        <label for="basic" class="col-lg-4 col-md-4 col-sm-4 col-4 col-form-label">Basic Rate:</label>
+                        <label class="col-lg-1 col-md-1 col-sm-1 col-1 col-form-label"></label>
+                        <div class="col-lg-4 col-md-4  col-sm-4 col-4 col-form-label">{{totalCharges.baseRate}}</div>
+                    </div>
+
+                    <div class="row col-lg-8 col-md-8">
+                        <label for="basic" class="col-lg-4 col-md-4 col-sm-4 col-4 col-form-label">Acc:</label>
+                        <label class="col-lg-1 col-md-1 col-sm-1 col-1 col-form-label"> + </label>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-4 col-form-label">{{totalCharges.acc}}</div>
+                    </div>
+
+                    <div class="row col-lg-8 col-md-8">
+                        <label for="basic" class="col-lg-4 col-md-4 col-sm-4 col-4 col-form-label">Final Rate:</label>
+                        <label class="col-lg-1 col-md-1 col-sm-1 col-1 col-form-label"> = </label>
+                        <div class="col-lg-4 col-md-4   col-sm-4 col-4 col-form-label">
+                        <input type="text" class="col-lg-4 col-md-4 form-control" disabled value="{{totalCharges.finalRate}}">
+                        </div>
+                    </div>
+
+                    <div class="row col-lg-9 col-md-9">
+                        <div class="col-lg-3 col-md-3 col-sm-3  col-3    ">
+                            <button type="button" class="btn btn-sm btn-primary">Save</button>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3  col-3 ">
+                            <button type="button" class="btn btn-sm btn-danger" (click)="reloadPage()">Reset</button>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3  col-3 ">
+                            <button type="reset" class="btn btn-sm btn-outline-secondary" (click)="openDialog()">Email</button>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+<!-- Dialog.component.html -->
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal" #exampleModal>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title mb-0">Email Customer Please fill information below</h3>
+        </div>
+        <div class="modal-body">
+          <!-- Dialog content goes here -->
+          Required feilds are in <strong><i>*Bold</i></strong>
+          <br><br>
+          <form>
+            <div class="container form-group">
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                  <label for="recipient-name" class="form-label"><strong><i>*Email Address:</i></strong></label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-7">
+                  <input type="email" class="form-control " name="recipient-name" [(ngModel)]="emailAddress"  [class.is-invalid]="!IsEmailValid" required>
+                  <div class="invalid-feedback">Please enter a valid email address.</div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                  <label for="message-text" class="form-label"><strong><i>*Body:</i></strong></label>
+                </div>
+                <div class="col-lg-7 col-md-7">
+                    <textarea class="form-control large-textarea " name="message-text" [(ngModel)]="emailBody"   [class.is-invalid]="!IsEmailBodyValid" required></textarea>
+                    <div  class="invalid-feedback">Please enter a valid email message.</div>
+                  </div>
+              </div>
+            </div>
+            <br>
+            <div  *ngIf="Emailsent" class="alert alert-success">Success! Email has been sent and Response: {{EmailResponse}}</div>
+                
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeDialog()">Close</button>
+          <button type="button" class="btn btn-primary" (click)="sendEmail()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop" #backdrop></div>
+  

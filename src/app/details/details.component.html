@@ -1,0 +1,53 @@
+<app-header></app-header>
+<div class="container " style="background-color: #f0f0f0;">
+    <div class="row">
+        <div class="col-2">
+           
+        </div>
+        <div class="col-10" style="background-color: white;">
+        
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 col-4 align-content-center align-items-center justify-content-center">
+
+                </div>
+                <div class="col-sm-4 col-4 align-content-center align-items-center justify-content-center">
+                    <h2>Quota Details</h2>
+                </div>
+                <div class="col-sm-4 col-4 align-content-center align-items-center justify-content-center">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-3">
+                    <h3>Quote: {{quoteDetails.quoteNumber}}</h3>
+                </div>
+                <div class="col-sm-6 col-6">
+                </div>
+                <div class="col-sm-3 col-3">
+                    <h3>Exception:</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-6">
+                    <h3>Required fields are in <strong><i>*Bold</i></strong></h3>
+                </div>
+                <div class="col-sm-6 col-6">
+                    <ng-container *ngFor="let exceptions of quoteDetails.exceptions; let last = last">
+                        <h3 style="display: inline-block; margin: 0;">
+                          <strong style="color: red;"><i> {{ exceptions }} </i></strong>
+                          <strong style="color: red;" *ngIf="!last">, </strong>
+                        </h3>
+                      </ng-container>
+                </div>
+            </div>
+            <app-contact-info  [customerInfo]="customerInformation"></app-contact-info>
+            <app-shipping-info [shippingInfo]="shippingInformation"></app-shipping-info>
+            <app-com [coms]="coms" ></app-com>
+            <app-total-charges [totalCharges]="totalCharges"></app-total-charges>
+
+        </div>
+    </div>
+    </div>
+</div>

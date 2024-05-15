@@ -1,0 +1,42 @@
+.comCard {
+    
+    border-radius: 3px;
+    
+}
+.col-form-label{
+    font-weight: 600;
+    display: inline;
+    margin-bottom: 0.5rem;
+
+}
+.form-control{
+    display: block;
+    height: 30px; /* Adjust as needed */
+}
+.comHeader{
+    background-color: #6DB1FF;
+    border-radius: 3px;
+}
+.label{
+    font-weight: 600;
+    display: inline;   
+}
+
+.headerTitle{
+    font-weight: 800;
+    margin-bottom: 0;
+}
+.comContent{
+    background-color: white;
+    border-radius: 5px;
+}
+.extra-large-icon {
+    height: auto;
+    width: auto;
+    font-size: 38px ; /* Adjust as needed */
+}
+.addEntireCom{
+    height: 40px;
+}
+  
+  

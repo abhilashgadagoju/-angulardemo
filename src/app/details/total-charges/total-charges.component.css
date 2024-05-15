@@ -1,0 +1,61 @@
+.totalChargesCard {
+    border-radius: 3px;
+}
+.col-form-label{
+    font-weight: 600;
+    display: inline;
+    margin-bottom: 0.5rem;
+}
+.form-control{
+    display: block;
+    height: 30px; /* Adjust as needed */
+}
+.totalChargesHeader{
+    background-color: #6DB1FF;
+    border-radius: 3px;
+}
+.label{
+    font-weight: 600;
+    display: inline;   
+}
+
+.headerTitle{
+    font-weight: 800;
+    margin-bottom: 0;
+}
+.totalChargesContent{
+    background-color: white;
+    border-radius: 5px;
+}
+
+/* main.component.css */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1050;
+  }
+  
+  .modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+    z-index: 1040;
+  }
+  
+  .show {
+    display: block !important;
+  }
+
+  .large-textarea {
+    height: 100px; /* Adjust the height as needed */
+  }
+  
+  
+  

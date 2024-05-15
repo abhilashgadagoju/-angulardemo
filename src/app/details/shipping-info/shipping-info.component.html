@@ -1,0 +1,68 @@
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card shippingInfoCard">
+                <div class="card-header shippingInfoHeader">
+                    <h4 class="headerTitle">Shipping Information</h4>
+                </div>
+                <div class="card-body shippingInfoContent">
+                    <div>
+                        <form>
+                            <div class="row justify-items-center">
+                                <label class="col-lg-2 col-md-2 col-sm-2 col-2"></label>
+                                <label for="country" class="col-lg-2 col-md-2 col-sm-2 col-2">Country</label>
+                                <label for="zip" class="col-lg-2 col-md-2 col-sm-2 col-2">Zip</label>
+                                <label for="city" class="col-lg-2 col-md-2 col-sm-2 col-2">City</label>
+                                <label for="state" class="col-lg-2 col-md-2 col-sm-2 col-2">State</label>
+                            </div>
+                            <div class="row align-items-center align-content-center mb-2">
+                                <label for="originCountry" class="col-lg-2 col-md-2 col-sm-2 col-2">Origin</label>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                                    <select id="originCountry" class="form-select form-select-sm">
+                                        <option value="{{shippingInfo.origin.country}}" selected>{{shippingInfo.origin.country}}</option>
+                                        <option value="option1">Option 1</option>
+                                        <option value="option2">Option 2</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-2 col-md-2  col-sm-2 col-2">
+                                    <input type="text" #originZip id="originZip" class="form-control " required value="{{shippingInfo.origin.zipCode}}">
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                                    <input type="text" #originCity id="originCity" class="form-control " required value="{{shippingInfo.origin.city}}">
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                                    <input type="text" #originState id="originState" class="form-control " required  value="{{shippingInfo.origin.stateProvince}}">
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="resetOriginFields()">Clear</button>
+                                </div>
+                            </div>
+                            <div class="row align-items-center align-content-center mb-2">
+                                <label for="destinationCountry" class="col-lg-2 col-md-2 col-sm-2 col-2">Destination</label>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                                    <select id="destinationCountry" class="form-select form-select-sm">
+                                        <option value="{{shippingInfo.destination.country}}" selected>{{shippingInfo.destination.country}}</option>
+                                        <option value="option1">Option 1</option>
+                                        <option value="option2">Option 2</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                                    <input type="text" #destinationZip id="destinationZip" class="form-control " required value="{{shippingInfo.destination.zipCode}}">
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                                    <input type="text"   #destinationCity id="destinationCity" class="form-control " required value="{{shippingInfo.destination.city}}">
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                                    <input type="text" #destinationState id="destinationState" class="form-control " required value="{{shippingInfo.destination.stateProvince}}">
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="resetDestinationFields()">Clear</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
