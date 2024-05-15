@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DetailsService } from '../Services/details.service';
 import { Detail, TotalCharges, QuoteDetailsApiResponse, Com, ComItem, ShippingInformation, CustomerInformation, QuoteDetails } from '../interface/quotedetailsresponse.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -14,16 +15,21 @@ export class DetailsComponent {
   shippingInformation!: ShippingInformation;
   customerInformation!: CustomerInformation;
   quoteDetails!: QuoteDetails;
+  quoteDetailsId!: any;
 
-  constructor(private detailsService: DetailsService) { }
+  constructor(private detailsService: DetailsService,private route: ActivatedRoute) { }
   ngOnInit(): void {
-    const id = '12';
-    console.log("id is",id);
-    this.fetchDetails(id);
+    this.route.paramMap.subscribe(params => {
+    this.quoteDetailsId = params.get('id');
+    console.log("params:", params);
+    console.log("quoteDetailsId is", this.quoteDetailsId);
+    this.fetchDetails(this.quoteDetailsId);
+  });
     
   }
 
   fetchDetails(id: string): void {
+    console.log("id is",id);
     this.detailsService.getDetails(id)
       .subscribe(
         (response: QuoteDetailsApiResponse) => {
