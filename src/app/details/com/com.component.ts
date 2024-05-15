@@ -14,33 +14,49 @@ export class ComComponent {
   @Input() coms!: ComItem[];
 
   
-
-  newComList: string[] = []; // Initial list of numbers
-  addComFirstTime: boolean = false;
+  newComList:ComItem[] = [];
+  addComFirstTime: boolean = true;
   isInvalid: boolean[] = [];
   isButtonClicked: boolean = false;
 
   // Add a trackBy function to improve rendering performance
-  trackByFn(index: number, item: string): number {
+  trackByFn(index: number, item: ComItem): number {
     return index; // Use index as the unique identifier
   }
 
   addInputField() {
     
-    if (!this.addComFirstTime) {
-      this.addComFirstTime = true;
-      this.newComList.push("");
-    }else if (this.newComList[this.newComList.length - 1] === "") {
+    if (this.addComFirstTime) {
+      this.addComFirstTime = false;
+      this.newComList.push({
+        count: 0,
+        dd3: "dd3_value1",
+        tb2: ""
+      });
+    }else if ( this.newComList[this.newComList.length-1].tb2==="" ) {
       this.isInvalid[this.newComList.length - 1] = true;
+    }else if(this.isInvalid.some(value => value === true)){
+      //do nothing
     }else {
       this.isInvalid[this.newComList.length - 1] = false;
-      this.newComList.push("");
+      this.newComList.push({
+        count: 0,
+        dd3: "dd3_value1",
+        tb2: ""
+      });
     }
     console.log(this.newComList);
   }
 
-  updateFormData(value: any) {
-    this.detailsupdateService.quotedetailsupdate.com = value;
+  onInputChange(index: number, newValue: any) {
+    if(newValue==="") {
+      this.isInvalid[index] = true;
+    }else{
+      this.newComList[index].tb2 = newValue;
+      this.detailsupdateService.updatecomItem( this.newComList);
+      this.isInvalid[index] = false;
+    }
+    
   }
 
 }

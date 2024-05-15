@@ -18,20 +18,20 @@
                             <div class="row align-items-center align-content-center mb-2">
                                 <label for="originCountry" class="col-lg-2 col-md-2 col-sm-2 col-2">Origin</label>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-                                    <select id="originCountry" class="form-select form-select-sm">
+                                    <select id="originCountry" class="form-select form-select-sm" [(ngModel)]="shippingInfo.origin.country" (ngModelChange)="onInputChange()" name="originCountry">
                                         <option value="{{shippingInfo.origin.country}}" selected>{{shippingInfo.origin.country}}</option>
-                                        <option value="option1">Option 1</option>
-                                        <option value="option2">Option 2</option>
+                                        <option value="US">US</option>
+                                        <option value="Mexico">Mexico</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-2 col-md-2  col-sm-2 col-2">
-                                    <input type="text" #originZip id="originZip" class="form-control " required value="{{shippingInfo.origin.zipCode}}">
+                                    <input type="text" name="originZip" class="form-control" required [(ngModel)]="shippingInfo.origin.zipCode" (ngModelChange)="onInputChange()" />
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-                                    <input type="text" #originCity id="originCity" class="form-control " required value="{{shippingInfo.origin.city}}">
+                                    <input type="text" name="originCity" class="form-control " required [(ngModel)]="shippingInfo.origin.city" (ngModelChange)="onInputChange()"/>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-                                    <input type="text" #originState id="originState" class="form-control " required  value="{{shippingInfo.origin.stateProvince}}">
+                                    <input type="text" name="originState" class="form-control " required  [(ngModel)]="shippingInfo.origin.stateProvince" (ngModelChange)="onInputChange()"/>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2">
                                     <button type="button" class="btn btn-sm btn-outline-secondary" (click)="resetOriginFields()">Clear</button>
@@ -40,20 +40,20 @@
                             <div class="row align-items-center align-content-center mb-2">
                                 <label for="destinationCountry" class="col-lg-2 col-md-2 col-sm-2 col-2">Destination</label>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-                                    <select id="destinationCountry" class="form-select form-select-sm">
+                                    <select id="destinationCountry" class="form-select form-select-sm" [(ngModel)]="shippingInfo.destination.country" (ngModelChange)="onInputChange()" name="destinationCountry">
                                         <option value="{{shippingInfo.destination.country}}" selected>{{shippingInfo.destination.country}}</option>
-                                        <option value="option1">Option 1</option>
-                                        <option value="option2">Option 2</option>
+                                        <option value="US">US</option>
+                                        <option value="Mexico">Mexico</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-                                    <input type="text" #destinationZip id="destinationZip" class="form-control " required value="{{shippingInfo.destination.zipCode}}">
+                                    <input type="text" name="destinationZip" class="form-control " required [(ngModel)]="shippingInfo.destination.zipCode" (ngModelChange)="onInputChange()"/>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-                                    <input type="text"   #destinationCity id="destinationCity" class="form-control " required value="{{shippingInfo.destination.city}}">
+                                    <input type="text"   name="destinationCity" class="form-control " required [(ngModel)]="shippingInfo.destination.city" (ngModelChange)="onInputChange()"/>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-                                    <input type="text" #destinationState id="destinationState" class="form-control " required value="{{shippingInfo.destination.stateProvince}}">
+                                    <input type="text" name="destinationState" class="form-control " required [(ngModel)]="shippingInfo.destination.stateProvince" (ngModelChange)="onInputChange()"/>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-2">
                                     <button type="button" class="btn btn-sm btn-outline-secondary" (click)="resetDestinationFields()">Clear</button>

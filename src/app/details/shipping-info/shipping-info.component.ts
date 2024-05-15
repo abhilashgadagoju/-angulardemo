@@ -11,6 +11,12 @@ export class ShippingInfoComponent {
 
   constructor(private detailsupdateService: DetailsupdateService) { }
 
+  ngOnInit() {
+    // Assign the shippingInfo to the service on page load
+    this.detailsupdateService.quotedetailsupdate.shippingInformation = this.shippingInfo;
+    console.log("updated shippingInfo",this.detailsupdateService.quotedetailsupdate.shippingInformation);
+  }
+
   @Input() shippingInfo!: ShippingInformation;
 
 
@@ -38,8 +44,10 @@ export class ShippingInfoComponent {
 
 
 
-  updateFormData(value: any) {
+  onInputChange() {
     this.detailsupdateService.quotedetailsupdate.shippingInformation = this.shippingInfo;
+    console.log("shippingInfo",this.shippingInfo);
+    console.log("this.detailsupdateService.quotedetailsupdate.shippingInformation",this.detailsupdateService.quotedetailsupdate.shippingInformation);
   }
 
 }

@@ -27,7 +27,7 @@ export class DetailsComponent {
     this.detailsService.getDetails(id)
       .subscribe(
         (response: QuoteDetailsApiResponse) => {
-          console.log('API Response:', response);
+          console.log('after API call Response received is', response);
           this.extractRequiredFields(response);
         },
         (error) => {
@@ -43,13 +43,6 @@ export class DetailsComponent {
     this.shippingInformation = this.quoteDetailsApiResponse.details[0].quoteDetails.shippingInformation;
     this.customerInformation = this.quoteDetailsApiResponse.details[0].quoteDetails.customerInformation;
     this.quoteDetails = this.quoteDetailsApiResponse.details[0].quoteDetails;
-    console.log("response is quoteDetails",this.quoteDetails);
-    console.log("response is Com",this.coms);
-    console.log("response is Shipping Information",this.shippingInformation);
-    console.log("response is Customer Information",this.customerInformation);
-    console.log("response is quoteDetails",this.quoteDetails);
-    console.log("response is total charges",this.totalCharges);
-    
   }
 
 }

@@ -36,15 +36,16 @@
 
 
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
-                                    <select id="dd2" class="form-select form-select-sm">
-                                        <option value="option1">Option 1</option>
-                                        <option value="option2">Option 2</option>
+                                    <select name="dd3" class="form-select form-select-sm" [(ngModel)]="newComList[i].dd3" >
+                                        <option value="{{newComList[i].dd3}}" selected>{{newComList[i].dd3}}</option>
+                                        
                                     </select>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                     <input type="text" class="form-control"
-                                     [(ngModel)]="newComList[i]" [name]="'tb2_' + i" 
-                                     [class.is-invalid]="isInvalid[i]">
+                                     [(ngModel)]="newComList[i].tb2" [name]="'tb2_' + i" 
+                                     [class.is-invalid]="isInvalid[i]" 
+                                     (ngModelChange)="onInputChange(i, $event)">
                                      <div class=" invalid-feedback">
                                         Please enter a valid value.
                                     </div>

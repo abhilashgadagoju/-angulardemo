@@ -11,8 +11,12 @@ import { TotalCharges } from 'src/app/interface/quotedetailsresponse.interface';
 })
 export class TotalChargesComponent {
   @Input() totalCharges!:TotalCharges;
+
   @ViewChild('exampleModal') exampleModal!: ElementRef;
   @ViewChild('backdrop') backdrop!: ElementRef ;
+
+  @Input() quoteNumber!:string;
+  @Input() exceptions!:string[];
 
   emailAddress: string = '';
   emailBody: string = '';
@@ -24,8 +28,19 @@ export class TotalChargesComponent {
   constructor(private detailsService: DetailsService,
     private detailsupdateService:DetailsupdateService) { }
 
-  updateFormData(value: any) {
-    this.detailsupdateService.quotedetailsupdate.totalCharges = value;
+  updateQuoteDetailsData() {
+    this.detailsupdateService.quotedetailsupdate.totalCharges = this.totalCharges;
+    this.detailsupdateService.quotedetailsupdate.quoteNumber = this.quoteNumber;
+    this.detailsupdateService.quotedetailsupdate.exceptions = this.exceptions;
+    //this.detailsupdateService.quotedetailsupdate.com = this.com;
+    this.detailsupdateService.updateDetails().subscribe(
+      (response: string) => {
+        console.log('Details updated successfully. API Response:', response);
+      },
+      (error) => {
+        console.log('Error fetching details:', error);
+      }
+    );
   }
 
   reloadPage() {
@@ -56,9 +71,6 @@ export class TotalChargesComponent {
     // Send email logic
     console.log('Email values:', this.emailAddress, this.emailBody);
     this.IsEmailValid=this.isValidEmail(this.emailAddress)
-    console.log("before IsEmailValid",this.IsEmailValid,"Entered email",this.emailAddress);
-    console.log("before IsEmailBodyValid",this.IsEmailBodyValid,"Entered emailBody",this.emailBody);
-    console.log("before Emailsent",this.Emailsent);
     if(!this.IsEmailValid || this.emailAddress == '') {
       this.IsEmailValid = false;
       this.Emailsent = false;
@@ -79,23 +91,11 @@ export class TotalChargesComponent {
           this.EmailResponse = response;
           console.log('API Response:', response);
           this.Emailsent = true;
-          console.log("after inside IsEmailValid",this.IsEmailValid,"Entered email",this.emailAddress);
-    console.log("after inside IsEmailBodyValid",this.IsEmailBodyValid,"Entered emailBody",this.emailBody);
-    console.log("after inside Emailsent",this.Emailsent);
-
         },
         (error) => {
           console.log('Error fetching details:', error);
         }
-      );
-        
-
+      );  
     }
-
-    console.log("after IsEmailValid",this.IsEmailValid,"Entered email",this.emailAddress);
-    console.log("after IsEmailBodyValid",this.IsEmailBodyValid,"Entered emailBody",this.emailBody);
-    console.log("after Emailsent",this.Emailsent);
-    
-    
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { QuoteDetailsUpdate } from '../interface/quotedetailsresponse.interface';
+import { ComItem, QuoteDetailsUpdate } from '../interface/quotedetailsresponse.interface';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -52,7 +52,13 @@ export class DetailsupdateService {
 
   constructor(private http: HttpClient) { }
 
+  updatecomItem( comItem: ComItem[]) {
+    console.log("service layer comItem recived",comItem);
+    this.quotedetailsupdate.com.coms=comItem;
+  }
+
   updateDetails():Observable<string> {
+    console.log("before sending api call Quote Details updated as:",this.quotedetailsupdate)
     return this.http.post(`${this.apiUrl}/details/email`, this.quotedetailsupdate, {responseType: 'text'} );
   }
 }

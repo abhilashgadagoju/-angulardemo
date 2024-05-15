@@ -14,8 +14,14 @@ export class ContactInfoComponent {
 
   @Input()  customerInfo!: CustomerInformation;
 
-  updateFormData(value: any) {
-    this.detailsupdateService.quotedetailsupdate.customerInformation = value;
+  ngOnInit() {
+    // Assign the shippingInfo to the service on page load
+    this.detailsupdateService.quotedetailsupdate.customerInformation = this.customerInfo;
+    console.log("updated customerInfo",this.detailsupdateService.quotedetailsupdate.customerInformation);
+  }
+
+  onInputChange() {
+    this.detailsupdateService.quotedetailsupdate.customerInformation = this.customerInfo;
   }
 
 
